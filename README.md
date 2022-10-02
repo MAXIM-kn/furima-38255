@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| first_name         | string | null: false |
-| last_name          | string | null: false |
-| first_name_kana    | string | null: false |
-| last_name_kana     | string | null: false |
-| birth_day          | data   | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_name_kana    | string | null: false               |
+| last_name_kana     | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ### Association
 
@@ -23,13 +23,13 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
-| description        | text       | null: false,                   |
-| state              | srring     | null: false,                   |
-| shippong_cost      | srring     | null: false,                   |
-| shippong_area      | srring     | null: false,                   |
-| shippong_days      | srring     | null: false,                   |
-| price              | srring     | null: false,                   |
-| category           | srring     | null: false,                   |
+| description        | text       | null: false                    |
+| condition_id       | string     | null: false                    |
+| shippong_cost_id   | string     | null: false                    |
+| shippong_area_id   | string     | null: false                    |
+| shippong_days_id   | string     | null: false                    |
+| price              | integer    | null: false                    |
+| category_id        | string     | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -52,15 +52,15 @@
 
 ## destinations テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| post_code       | string     | null: false                    |
-| Prefectures     | srring     | null: false,                   |
-| municipalities  | srring     | null: false,                   |
-| address         | srring     | null: false,                   |
-| Building name   | srring     |                                |
-| phone_number    | srring     | null: false,                   |
-| purchase_record | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_code        | string     | null: false                    |
+| shipping_area_id | string     | null: false                    |
+| municipality     | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase_record  | references | null: false, foreign_key: true |
 
 ### Association
 
