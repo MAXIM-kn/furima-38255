@@ -24,12 +24,12 @@
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
 | description        | text       | null: false                    |
-| condition_id       | string     | null: false                    |
-| shippong_cost_id   | string     | null: false                    |
-| shippong_area_id   | string     | null: false                    |
-| shippong_days_id   | string     | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shippong_cost_id   | integer    | null: false                    |
+| shippong_area_id   | integer    | null: false                    |
+| shippong_days_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| category_id        | string     | null: false                    |
+| category_id        | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -55,7 +55,7 @@
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | post_code        | string     | null: false                    |
-| shipping_area_id | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
 | municipality     | string     | null: false                    |
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
