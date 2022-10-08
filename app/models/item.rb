@@ -10,11 +10,7 @@ class Item < ApplicationRecord
                     numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, presence: true
   validates :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_days_id,
             numericality: { other_than: 1, message: "can't be blank" }
-  validates :image, presence: true, unless: :was_attached?
-
-  def was_attached?
-    image.attached?
-  end
+  validates :image, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
