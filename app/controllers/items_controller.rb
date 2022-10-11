@@ -46,7 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:id])
     if @item.purchase_record.present?
       redirect_to action: :index
     else
