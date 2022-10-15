@@ -29,6 +29,11 @@ RSpec.describe PurchaseRecordDestination, type: :model do
         expect(@purchase_record_destination).to be_valid
       end
 
+      it 'tokenがあれば保存できる' do
+        @purchase_record_destination.building_name = ''
+        expect(@purchase_record_destination).to be_valid
+      end
+
     end
     context '配送先情報が保存できない場合' do
       it 'post_codeが空では保存できない' do
@@ -75,6 +80,11 @@ RSpec.describe PurchaseRecordDestination, type: :model do
         @purchase_record_destination.item_id = nil
         @purchase_record_destination.valid?
         expect(@purchase_record_destination.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが空では保存できない' do
+        @purchase_record_destination.token = nil
+        @purchase_record_destination.valid?
+        expect(@purchase_record_destination.errors.full_messages).to include "Token can't be blank"
       end
     end
   end
