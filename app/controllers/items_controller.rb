@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update]
-  before_action :move_to_index, only: :edit
+  #before_action :move_to_index, only: :edit
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -54,14 +54,14 @@ class ItemsController < ApplicationController
                                  :price, :category_id, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    if @item.purchase_record.present?
-      redirect_to action: :index
-    else
-      unless @item.user == current_user
-          redirect_to action: :index
-      end
-    end
-  end
+  #def move_to_index
+    #if @item.purchase_record.present?
+      #redirect_to action: :index
+    #else
+      #unless @item.user == current_user
+          #redirect_to action: :index
+      #end
+    #end
+  #end
 
 end
