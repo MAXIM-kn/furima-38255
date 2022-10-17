@@ -30,7 +30,7 @@ RSpec.describe PurchaseRecordDestination, type: :model do
       end
 
       it 'tokenがあれば保存できる' do
-        @purchase_record_destination.building_name = ''
+        @purchase_record_destination.token = 'tok_abcdefghijk00000000000000000'
         expect(@purchase_record_destination).to be_valid
       end
 
@@ -40,6 +40,11 @@ RSpec.describe PurchaseRecordDestination, type: :model do
         @purchase_record_destination.post_code = ''
         @purchase_record_destination.valid?
         expect(@purchase_record_destination.errors.full_messages).to include "Post code can't be blank"
+      end
+      it 'post_codeは半角ハイフンなしでは保存できない' do
+        @purchase_record_destination.post_code = '1234567'
+        @purchase_record_destination.valid?
+        expect(@purchase_record_destination.errors.full_messages).to include "Post code is invalid"
       end
       it 'post_codeは3桁ハイフン4桁の半角数値でしか保存ができない' do
         @purchase_record_destination.post_code = '１２３-４５６７'
@@ -68,6 +73,16 @@ RSpec.describe PurchaseRecordDestination, type: :model do
       end
       it 'phone_numberは10桁以上11桁以内の半角数値のみでしか保存できない' do
         @purchase_record_destination.phone_number = '１２３４５-６７８９０'
+        @purchase_record_destination.valid?
+        expect(@purchase_record_destination.errors.full_messages).to include "Phone number is invalid"
+      end
+      it 'phone_numberが９桁以下では購入できない' do
+        @purchase_record_destination.phone_number = '123456789'
+        @purchase_record_destination.valid?
+        expect(@purchase_record_destination.errors.full_messages).to include "Phone number is invalid"
+      end
+      it 'phone_numberが12桁以上では購入できない' do
+        @purchase_record_destination.phone_number = '123456789012'
         @purchase_record_destination.valid?
         expect(@purchase_record_destination.errors.full_messages).to include "Phone number is invalid"
       end
