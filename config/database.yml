@@ -52,3 +52,5 @@ production:
   database: furima_38255_production
   username: furima_38255
   password: <%= ENV['FURIMA_38255_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
